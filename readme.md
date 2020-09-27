@@ -1,0 +1,1 @@
+Todo Application using express js as backend. sequelize + postgre as database. Frontend use ejs + bootstrap.

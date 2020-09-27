@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <%- include("./partials/header-login.ejs", {title : "Add Todo"}) %>
+    <body>
+      <center><form action="/todo/add" method="POST">
+        <label for="task">Task</label><br>
+        <input type="text" name="task"><br><br>
+        
+        <label for="deadline">Deadline</label><br>
+        <input type="date" name="deadline"><br><br>
+
+        <input type="submit" value="Submit" class="btn btn-primary">
+      </form></center>
+    </body>
+</html>

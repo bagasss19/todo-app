@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <%- include("./partials/header-login.ejs", {title : "Add User"}) %>
+    <body>
+      <center><form action="/todo/addPeople/<%= todo[0].id %>" method="POST">
+        <label for="id">Id</label><br>
+        <input type="text" name="todo_id" value="<%= todo[0].id %>" readonly style="color: gray;"><br><br>
+
+        <label for="Assign To">Assign To:</label><br>
+        <select name="user_id">
+          <% user.forEach(x => { %>
+          <option value="<%= x.id %>"><%= x.full_name %></option>
+          <% }) %>
+        </select><br><br>
+
+        <input type="submit" value="Submit" class="btn btn-primary">
+      </form></center>
+
+      <center><h1>Assignee</h1></center>
+    </center><table border="1px" class="table">
+        <thead class="thead-dark">
+          <th>Name</th>
+        </thead>
+        <% tc.forEach(x => { %>
+        <tbody>
+          <td><%= x.User.full_name %></td>
+        </tbody>
+        <% }) %>
+      </table><br>
+    </body></center>
+</html>

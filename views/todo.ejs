@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <%- include("./partials/header-login.ejs", {title : "Home"}) %>
+<body>
+  <h2 style="text-align: center;">welcome <%= data[0].full_name %></h2>
+    <table border="1px" class="table" style="margin-top: auto;margin-left: auto;margin-right: auto;">
+        <thead class="thead-dark">
+          <th>Task</th>
+          <th>Deadline</th>
+          <th>Status</th>
+          <th>Completed At</th>
+          <th>Action</th>
+        </thead>
+        <% data[0].Todos.forEach(x => { %>
+        <tbody>
+          <td><%= x.task %></td>
+          <td><%= dateFormat(x.deadline) %></td>
+          <td><%= x.isCompleted ? 'Done' : 'Not Yet' %></td>
+          <td><%= x.completedAt ? x.completedAt : '-' %></td>
+          <% if (x.isCompleted == true) { %>
+            <td> <button class="btn btn-primary" onclick="myFunction('<%= x.id %>')">Delete</button><td>
+        <% } else { %>
+          <td><a href="/todo/done/<%= x.id %>"><button class="btn btn-primary">Done</button></a> | 
+            <a href="/todo/edit/<%= x.id %>"><button class="btn btn-primary">Edit</button></a> |  
+            <a href="/todo/addPeople/<%= x.id %>"><button class="btn btn-primary"> Assign People</button></a></td>
+          <% } %>
+          </tbody>
+        <% }) %>
+      </table><br>
+      
+
+      <script>
+      function myFunction(id) {
+        if (confirm("Are you sure want to delete?")) {
+          parent.location.href= `/todo/delete/${id}`
+        } else {
+          parent.location.href='/todo'
+        }
+      }   
+      </script>
+
+      <center><p><a href="/todo/add"><button class="btn btn-primary">Add</button></a> <a href="/todo/list"><button class="btn btn-primary">View My Task</button></a></center></p>
+</body>
+</html>

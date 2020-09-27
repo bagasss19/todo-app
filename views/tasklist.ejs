@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <%- include("./partials/header-login.ejs", {title : "Home"}) %>
+<body>
+  <h2 style="text-align: center;">Your Task</h2>
+    <table border="1px" class="table" style="margin-top: auto;margin-left: auto;margin-right: auto;">
+        <thead class="thead-dark">
+          <th>Task</th>
+          <th>Deadline</th>
+          <th>Status</th>
+          <th>Completed At</th>
+        </thead>
+        <% data.forEach(x => { %>
+        <tbody>
+          <td><%= x.Todo.task %></td>
+          <td><%= dateFormat(x.Todo.deadline) %></td>
+          <td><%= x.Todo.isCompleted ? 'Done' : 'Not Yet' %></td>
+          <td><%= x.Todo.completedAt ? x.Todo.completedAt : '-' %></td>
+        </tbody>
+        <% }) %>
+      </table><br>
+      
+
+      <script>
+      function myFunction(id) {
+        if (confirm("Are you sure want to delete?")) {
+          parent.location.href= `/todo/delete/${id}`
+        } else {
+          parent.location.href='/todo'
+        }
+      }   
+      </script>
+
+      <center><p><a href="/todo/add"><button class="btn btn-primary">Add</button></a> <a href="/todo/list"><button class="btn btn-primary">View My Task</button></a></center></p>
+</body>
+</html>

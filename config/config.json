@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "todo",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "shetoujiioikmu",
+    "password": "44ba2f15054e430db0040c8ffcd1bacbc94000d0d04822374898acba98999e16",
+    "database": "dfc4pp1a30ju3r",
+    "host": "ec2-23-23-36-227.compute-1.amazonaws.com",
+    "dialect": "postgres"
+  }
+}

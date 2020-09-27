@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+        <%- include("./partials/header.ejs", {title : "Home"}) %>
+  </head>
+  <body>
+    <h2 style="text-align: center;">Login</h2>
+    <% if (!msg) { %>
+      <% } else { %>
+    <p style="text-align: center;" class="alert alert-primary"><%= msg %></p><br>
+    <% } %>
+    <center><form action="/" method="POST" >
+      <label for="Username">Username</label><br>
+      <input type="text" name="username" placeholder="enter your username here"><br><br>
+      
+      <label for="password">Password</label><br>
+      <input type="password" name="password" placeholder="min 6 charackter "><br><br>
+
+      <input type="submit" value="Submit">
+    </form></center><br><br>
+
+      <p style="text-align: center;">Don't have account? Register <a href="/register">here</a></p><br>
+      <p style="text-align: center;">Or Login With</p>
+
+      <center><div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div></center>
+      <script>function onSignIn(googleUser) {
+        let profile = googleUser.getBasicProfile();
+        let id_token = googleUser.getAuthResponse().id_token;
+        let xhr = new XMLHttpRequest()
+        xhr.open('POST', '/todo');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+        console.log('Signed in as: ' + xhr.responseText);
+
+        const {OAuth2Client} = require('google-auth-library');
+const client = new OAuth2Client(CLIENT_ID);
+async function verify() {
+  const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
+      // Or, if multiple clients access the backend:
+      //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+  });
+  const payload = ticket.getPayload();
+  const userid = payload['sub'];
+  // If request specified a G Suite domain:
+  // const domain = payload['hd'];
+}
+verify().catch(console.error);
+};
+xhr.send('idtoken=' + id_token);
+        console.log('Name: ' + profile.getName());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+      }</script>
+  </body>
+</html>

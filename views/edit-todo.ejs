@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <%- include("./partials/header-login.ejs", {title : "Home"}) %>
+    <body>
+      <center><form action="/todo/edit/<%= data[0].id %>" method="POST">
+        <label for="task">Task</label><br>
+        <input type="text" name="task" value="<%= data[0].task %>"><br><br>
+        
+        <label for="deadline">Deadline</label><br>
+        <input type="date" name="deadline" value="<%= data[0].dateFormat() %>"><br><br>
+        
+        <input type="submit" value="Submit" class="btn btn-primary">
+      </form></center>
+    </body>
+</html>
